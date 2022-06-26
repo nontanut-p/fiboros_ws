@@ -1,0 +1,9 @@
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/install/strip.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/install/local.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/edit_cache.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/test.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/install.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/list_install_components.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/rebuild_cache.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/turtlesim_control_uninstall.dir
+/home/student26/ROS2_Directory/pbot_ws/src/turtlesim_control/build/CMakeFiles/uninstall.dir

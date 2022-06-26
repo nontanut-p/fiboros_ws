@@ -12,21 +12,25 @@ import math
 class Controller(Node):
     def __init__(self):
         super().__init__('controller')
-        self.command_publisher = self.create_publisher(Twist,'/turtle1/cmd_vel',10)
+        self.command_publisher = self.create_publisher(Twist,'/cmd_vel',10)
         timer_period = 0.1
         self.timer = self.create_timer(timer_period,self.timer_callback)
-        self.pose_subscription = self.create_subscription(Pose,'/turtle1/pose',self.pose_callback,10)
+        self.pose_subscription = self.create_subscription(Pose,'/pose',self.pose_callback,10)
         self.pose = Pose()
         self.set_goal_service = self.create_service(SetGoal,'/set_goal',self.set_goal_callback)
         self.goal = np.array([2.0,3.0])
         self.isEnable = False
         self.enable_service = self.create_service(Empty,'/enable', self.enable_callback)
         self.notify_arrival = self.create_client(Empty, '/notify_arrival')
+        self.declare_parameters(namespace="", parameters=[('gain',10.0)])
+        
         
     def timer_callback(self):
         if self.isEnable:
             msg = self.control()
             self.command_publisher.publish(msg)
+         
+            
     
     def enable_callback(self,request, response):
         self.isEnable = True
@@ -42,11 +46,11 @@ class Controller(Node):
         dp = self.goal-current_position
         err = math.sqrt(dp[0]**2 + dp[1]**2)
         e = np.arctan2(dp[1],dp[0])-self.pose.theta
-        K = 15.0
+        K = self.get_parameter('gain').get_parameter_value().double_value
         w = K*np.arctan2(np.sin(e),np.cos(e))
-        self.get_logger().info('error is '+str(err  )) 
+
         if np.linalg.norm(dp)>0.1:
-            v = err * 2.0
+            v = 1.0
         else:
             v = 0.0
             w = 0.0
